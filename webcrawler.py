@@ -1,4 +1,3 @@
-from matplotlib.pyplot import title
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -44,9 +43,9 @@ def searchPoints(row):
 
 
 def searchComments(row):
-    if(row.next_sibling.find('a', text=re.compile('comments'), href=re.compile('item')) != None):
+    if(row.next_sibling.find('a', text=re.compile(r'\bcomments\b|\bcomment\b'), href=re.compile('item')) != None):
         comment = row.next_sibling.find('a', text=re.compile(
-            'comments'), href=re.compile('item')).get_text()
+            r'\bcomments\b|\bcomment\b'), href=re.compile('item')).get_text()
     else:
         comment = 'None'
 
